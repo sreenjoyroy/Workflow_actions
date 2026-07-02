@@ -1,30 +1,26 @@
-name : example
+name: GH200-Workflow
+
 on: push
+
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
       - name: Hello World
-        run: echo "Hello to the GH-200 Workshops"
-      - name: Copy code
-        uses: actions/checkout@v6
+        run: echo "Hello to the GH-200 Workshop!!!"
 
-      - name: List all the files
-        run: ls -la
-        
-      - name: Create ASCII Art
-        run: |
-          sudo apt-get install -y figlet
-          figlet "GH200 COHACK"
-          echo "-------------------------"
-          figlet -f digital "Github Actions"
-          echo "ASCII Act Created"
+      -  name: Copy Code
+         uses: actions/checkout@v6
 
-      - name: using scripts
+      -  name: List Repo Files
+         run: ls -la
+
+      - name: Run Shell Script
         run: |
           chmod +x scripts/greets.sh
-          ./scripts/greets.sh  
-   build:
+          ./scripts/greets.sh
+
+  build:
     runs-on: ubuntu-latest
     needs: setup
     steps:
@@ -34,8 +30,27 @@ jobs:
         run: |
           echo "Building the application..."
           echo "Build completed at $(date)" > build-report.txt
-          cat build-report.txt
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: build-report
+          path: build-report.txt
+          retention-days: 1
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🧪 Simulate Tests
+        run: echo "✅ All tests passed!"
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: build-report
+
+      - name: Test Artifact
+        run: cat build-report.txt
   test:
     runs-on: ubuntu-latest
     needs: build
