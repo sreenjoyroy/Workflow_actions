@@ -23,6 +23,22 @@ jobs:
       - name: using scripts
         run: |
           chmod +x scripts/greets.sh
-          ./scripts/greets.sh
-          
-      
+          ./scripts/greets.sh  
+   build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v6
+      - name: 🔨 Simulate Build
+        run: |
+          echo "Building the application..."
+          echo "Build completed at $(date)" > build-report.txt
+          cat build-report.txt
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🧪 Simulate Tests
+        run: echo "✅ All tests passed!"   
