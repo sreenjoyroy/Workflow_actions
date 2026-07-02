@@ -19,5 +19,10 @@ jobs:
           echo "-------------------------"
           figlet -f digital "Github Actions"
           echo "ASCII Act Created"
+
+      - name: using scripts
+        run: |
+          chmod +x scripts/greets.sh
+          ./scripts/greets.sh
           
       
