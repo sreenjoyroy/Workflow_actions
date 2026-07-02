@@ -14,7 +14,7 @@ jobs:
         
       - name: Create ASCII Art
         run: |
-          sudo apt -get install -y figlet
+          sudo apt-get install -y figlet
           figlet "GH200 COHACK"
           echo "-------------------------"
           figlet -f digital "Github Actions"
