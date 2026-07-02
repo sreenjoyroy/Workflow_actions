@@ -9,11 +9,11 @@ jobs:
       - name: Hello World
         run: echo "Hello to the GH-200 Workshop!!!"
 
-      -  name: Copy Code
-         uses: actions/checkout@v6
+      - name: Copy Code
+        uses: actions/checkout@v6
 
-      -  name: List Repo Files
-         run: ls -la
+      - name: List Repo Files
+        run: ls -la
 
       - name: Run Shell Script
         run: |
@@ -51,9 +51,3 @@ jobs:
 
       - name: Test Artifact
         run: cat build-report.txt
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: 🧪 Simulate Tests
-        run: echo "✅ All tests passed!"   
