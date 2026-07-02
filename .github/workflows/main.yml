@@ -1,0 +1,8 @@
+name : example
+on: push
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World
+        run: echo "Hello to the GH-200 Workshops"
