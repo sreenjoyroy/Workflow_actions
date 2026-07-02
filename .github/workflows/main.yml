@@ -11,5 +11,13 @@ jobs:
 
       - name: List all the files
         run: ls -la
-
+        
+      - name: Create ASCII Art
+        run: |
+          sudo apt -get install -y figlet
+          figlet "GH200 COHACK"
+          echo "-------------------------"
+          figlet -f digital "Github Actions"
+          echo "ASCII Act Created"
+          
       
