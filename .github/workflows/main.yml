@@ -6,3 +6,5 @@ jobs:
     steps:
       - name: Hello World
         run: echo "Hello to the GH-200 Workshops"
+      - name : Copy code
+        uses: actions/checkout@v6
